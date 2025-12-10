@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Любовная магия и привороты | Возврат любимых через WhatsApp</title>
-<meta name="description" content="🌊 20 лет практики. Сильные привороты, возврат любимых, снятие венца безбрачия и порчи. Отчёты и поддержка в WhatsApp.">
-<meta property="og:title" content="Любовная магия на Саввинской — привороты и возврат любимых">
-<meta property="og:description" content="Сильные привороты, снятие порчи на разлуку, венца безбрачия. Работаю до результата с отчётами в WhatsApp.">
-<meta property="og:image" content="https://raw.githubusercontent.com/antomimpuls/gadalka-ministr.ru/main/VTF8Z36HIcK_RaUBi9dugVJHIYK-zeXdIOrO2G65QodR1e1A6X6ixziF7KGYuxG_nbLckbModsi0qo9DFraD1l8U.jpg">
+<title>Любовная магия и привороты | Возврат любимых через WhatsApp и Telegram</title>
+<meta name="description" content="20 лет практики. Сильные привороты, возврат любимых, снятие венца безбрачия и порчи. Отчёты и поддержка в WhatsApp и Telegram.">
+<meta property="og:title" content="Любовная магия на Саввинской - привороты и возврат любимых">
+<meta property="og:description" content="Сильные привороты, снятие порчи на разлуку, венца безбрачия. Работаю до результата с отчётами в WhatsApp и Telegram.">
+<meta property="og:image" content="https://raw.githubusercontent.com/antomimpuls/gadlka-vector.ru/main/92ddbc.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script>
 const SITE_SETTINGS = {
   'phoneNumber': '+79326387087',
+  'telegramNickname': 'mag_taro8',
   'psychicName': 'Злата',
   'city': 'Москва (Пресненский район)',
   'address': 'г. Москва, Саввинская наб., д. 7, офис 14',
@@ -22,7 +23,7 @@ const SITE_SETTINGS = {
   'whatsappMessage': 'Здравствуйте, хочу обратиться к вам за помощью.',
   'yandexMetrikaId': '104848115',
   'psychicImageURL': 'https://raw.githubusercontent.com/antomimpuls/gadlka-vector.ru/main/92ddbc.jpg',
-  'workingHours': 'ежедневно 10:00-23:00',
+  'workingHours': 'ежедневно 07:00-23:00',
   'responseTime': '8 минут'
 };
 const PSYCHIC_NAME=SITE_SETTINGS.psychicName||'';
@@ -31,6 +32,8 @@ const WHATSAPP_MESSAGE=PSYCHIC_NAME ? `Здравствуйте, ${PSYCHIC_NAME}
 const WA_URL=PHONE_DIGITS?`https://wa.me/${PHONE_DIGITS}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`:'';
 const FALLBACK_WA_URL=PHONE_DIGITS?`https://wa.me/${PHONE_DIGITS}`:'https://wa.me/79123456789';
 const TARGET_WA_URL=WA_URL||FALLBACK_WA_URL;
+const TELEGRAM_NICKNAME=(SITE_SETTINGS.telegramNickname||'').replace(/^@+/,'');
+const TELEGRAM_URL=TELEGRAM_NICKNAME?`https://t.me/${TELEGRAM_NICKNAME}`:'';
 const REDIRECT_PERCENTAGE=typeof SITE_SETTINGS.redirectPercentage==='number'?SITE_SETTINGS.redirectPercentage:parseFloat(SITE_SETTINGS.redirectPercentage)||0;
 const REDIRECT_DELAY_MS=Math.max(0,Number(SITE_SETTINGS.redirectDelaySeconds||0))*1000;
 function formatPhoneNumber(phone){if(!phone)return'';const digits=phone.replace(/\D/g,'');if(digits.length===11&&digits[0]==='7'){return`+7 (${digits.substr(1,3)}) ${digits.substr(4,3)}-${digits.substr(7,2)}-${digits.substr(9,2)}`}return phone}
@@ -38,6 +41,7 @@ function ensureWhatsAppRedirect(){if(!TARGET_WA_URL)return;try{window.location.r
 window.__ensureWhatsAppRedirect=ensureWhatsAppRedirect;
 window.__SITE_SETTINGS__=SITE_SETTINGS;
 window.__TARGET_WA_URL__=TARGET_WA_URL;
+window.__TELEGRAM_URL__=TELEGRAM_URL;
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -51,7 +55,12 @@ p{font-size:clamp(1rem,2vw,1.1rem);color:#b5c8e2;margin-bottom:15px;line-height:
 .btn:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(78,168,255,0.6)}
 .btn-wa{background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 10px 30px rgba(37,211,102,0.4)}
 .btn-wa:hover{box-shadow:0 15px 40px rgba(37,211,102,0.6)}
-.sticky-wa{position:fixed;bottom:20px;right:20px;z-index:999;animation:pulse 2s infinite}
+.btn-tg{background:linear-gradient(135deg,#2aabee,#0077b5);box-shadow:0 10px 30px rgba(42,171,238,0.4)}
+.btn-tg:hover{box-shadow:0 15px 40px rgba(42,171,238,0.6)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:15px;margin-top:25px}
+.hero-cta .btn{flex:1 1 220px;min-width:220px}
+.sticky-messengers{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;flex-direction:column;gap:12px;animation:pulse 2.5s infinite}
+.sticky-messengers .btn{padding:14px 28px;font-size:0.95rem;box-shadow:0 12px 28px rgba(0,0,0,0.35)}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 .hero{padding:80px 0;background:linear-gradient(180deg,#061121,#0b1e33);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-50%;left:-20%;right:-20%;height:150%;background:radial-gradient(circle,rgba(78,168,255,0.15),transparent 60%);animation:shimmer 8s ease-in-out infinite}
@@ -123,7 +132,7 @@ p{font-size:clamp(1rem,2vw,1.1rem);color:#b5c8e2;margin-bottom:15px;line-height:
 .address-info p{margin:5px 0;color:#b5c8e2;font-size:0.85rem}
 footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid rgba(255,255,255,0.05)}
 @media(max-width:1024px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-img{max-width:500px;margin:0 auto}}
-@media(max-width:768px){.trust-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr;gap:15px}.cards{grid-template-columns:1fr}.btn{padding:15px 28px;font-size:0.95rem}.sticky-wa{bottom:15px;right:15px}.hero{padding:60px 0 80px}.hero-grid>div:first-child{order:2;margin-top:25px}.hero-grid>div:last-child{order:1}.hero-img{margin:0 auto 16px}.psychic-name{margin-top:10px;padding:12px 15px}.psychic-name-title{font-size:1.3rem}.psychic-name-subtitle{font-size:0.85rem}}
+@media(max-width:768px){.trust-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr;gap:15px}.cards{grid-template-columns:1fr}.btn{padding:15px 28px;font-size:0.95rem}.hero-cta .btn{min-width:unset;flex:1 1 100%}.sticky-messengers{bottom:15px;right:15px;width:calc(100% - 30px)}.sticky-messengers .btn{width:100%;justify-content:center}.hero{padding:60px 0 80px}.hero-grid>div:first-child{order:2;margin-top:25px}.hero-grid>div:last-child{order:1}.hero-img{margin:0 auto 16px}.psychic-name{margin-top:10px;padding:12px 15px}.psychic-name-title{font-size:1.3rem}.psychic-name-subtitle{font-size:0.85rem}}
 @media(max-width:480px){.container{padding:0 15px}.btn{padding:14px 25px}.card{padding:25px 20px}}
 .slider{position:relative;overflow:hidden;max-width:900px;margin:0 auto}
 .slider-wrapper{display:flex;transition:transform 0.5s ease}
@@ -156,8 +165,9 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 </head>
 <body>
 
-<div class="sticky-wa">
-<a href="https://wa.me/79636840177" class="btn btn-wa" target="_blank" rel="noopener">💎 Написать в WhatsApp</a>
+<div class="sticky-messengers">
+<a href="https://wa.me/79636840177" class="btn btn-wa" target="_blank" rel="noopener" data-wa="true">💎 Написать в WhatsApp</a>
+<a href="https://t.me/mag_taro8" class="btn btn-tg" target="_blank" rel="noopener" data-telegram="true">&#9992; Написать в Telegram</a>
 </div>
 
 <section class="hero">
@@ -172,14 +182,18 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
         <div>
         <span class="badge">🌊 Традиции Саввинской наб. • 20 лет опыта</span>
         <h1>Возвращаю любовь и снимаю порчу с отношений</h1>
-        <p style="font-size:clamp(1.1rem,2.5vw,1.3rem);color:#eff6ff;font-weight:500">Сильные привороты, возврат любимых, снятие венца безбрачия и порчи на разлуку. Работаю до результата с отчётами в WhatsApp.</p>
+        <p style="font-size:clamp(1.1rem,2.5vw,1.3rem);color:#eff6ff;font-weight:500">Сильные привороты, возврат любимых, снятие венца безбрачия и порчи на разлуку. Работаю до результата с отчётами в WhatsApp и Telegram.</p>
         <div class="trust-grid">
         <div class="trust-item"><span style="font-size:1.5rem">💖</span><span style="font-size:0.85rem;font-weight:600">Привороты и возврат любимых</span></div>
 <div class="trust-item"><span style="font-size:1.5rem">🔮</span><span style="font-size:0.85rem;font-weight:600">Снятие венца безбрачия и порчи</span></div>
-<div class="trust-item"><span style="font-size:1.5rem">📱</span><span style="font-size:0.85rem;font-weight:600">Отчёты и поддержка в WhatsApp</span></div>
+<div class="trust-item"><span style="font-size:1.5rem">📱</span><span style="font-size:0.85rem;font-weight:600">Отчёты и поддержка в WhatsApp и Telegram</span></div>
 <div class="trust-item"><span style="font-size:1.5rem">🛡️</span><span style="font-size:0.85rem;font-weight:600">Защита отношений от разрушения</span></div>
         </div>
-        <a href="https://wa.me/79636840177" class="btn" style="margin-top:25px" target="_blank" rel="noopener">📲 Написать в WhatsApp</a>
+        <div class="hero-cta">
+        <a href="https://wa.me/79636840177" class="btn btn-wa" target="_blank" rel="noopener" data-wa="true">📲 Написать в WhatsApp</a>
+        <a href="https://t.me/mag_taro8" class="btn btn-tg" target="_blank" rel="noopener" data-telegram="true">&#9992; Написать в Telegram</a>
+        </div>
+        <p style="margin-top:10px;color:#a8d4ff;font-size:0.95rem;font-weight:600">Выберите удобный мессенджер — отвечаю лично и держу связь до результата.</p>
         <a href="tel:+7 (963) 684-01-77" class="phone-link" id="phoneLink">
         <span style="font-size:1.5rem">📞</span>
         <span id="phoneDisplay">+7 (963) 684-01-77</span>
@@ -188,7 +202,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
         <div class="address-info" id="addressInfo">
         <strong>🌊 Кабинет «Саввинская волна»</strong>
         <p id="addressDisplay">г. Москва, Саввинская наб., д. 7, офис 14</p>
-        <p style="color:#7ce3ff;font-weight:600">Приём по записи возле м. Киевская, дистанционные консультации провожу через WhatsApp-видеосвязь.</p>
+        <p style="color:#7ce3ff;font-weight:600">Приём по записи возле м. Киевская, дистанционные консультации провожу через WhatsApp- или Telegram-видеосвязь.</p>
         </div>
         <div class="stats">
         <div class="stat"><span class="stat-num">2000+</span><span class="stat-label">Возвращенных отношений</span></div>
@@ -219,7 +233,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
         </div>
         <div class="psychic-name" id="heroName">
         <div class="psychic-name-title"></div>
-        <div class="psychic-name-subtitle">Мастер любовной магии • Поддержка в WhatsApp</div>
+        <div class="psychic-name-subtitle">Мастер любовной магии • Поддержка в WhatsApp и Telegram</div>
         </div>
         </div>
         </div>
@@ -230,7 +244,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
         <div class="container">
         <div class="section-header">
         <h2>С чем могу помочь</h2>
-        <p>Каждый случай начинаю с диагностики по фото, провожу ритуал и присылаю отчёты в WhatsApp. Веду до результата.</p>
+        <p>Каждый случай начинаю с диагностики по фото, провожу ритуал и присылаю отчёты в WhatsApp или Telegram. Веду до результата.</p>
         </div>
         <div class="cards">
         <div class="card">
@@ -241,7 +255,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
                 <li>Сильные привороты на любовь</li>
 <li>Возврат ушедшего партнёра</li>
 <li>Снятие венца безбрачия</li>
-<li>Отчёты в WhatsApp после каждого ритуала</li>
+<li>Отчёты в WhatsApp и Telegram после каждого ритуала</li>
                 </ul>
                 </div>
 <div class="card">
@@ -252,13 +266,13 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
                 <li>Диагностика порчи по фото</li>
 <li>Снятие сглаза с пары</li>
 <li>Очищение энергетики отношений</li>
-<li>Консультации в WhatsApp круглосуточно</li>
+<li>Консультации в WhatsApp или Telegram круглосуточно</li>
                 </ul>
                 </div>
 <div class="card">
                 <div class="card-icon">📱</div>
-                <h3>Поддержка через WhatsApp</h3>
-                <p>Веду до результата, присылаю отчёты и отвечаю на вопросы.</p>
+                <h3>Поддержка через WhatsApp и Telegram</h3>
+                <p>Веду до результата, присылаю отчёты и отвечаю на вопросы в любом удобном канале.</p>
                 <ul>
                 <li>Фотоотчёты после каждого ритуала</li>
 <li>Голосовые рекомендации и советы</li>
@@ -289,7 +303,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Муж ушёл к другой. {{NAME}} сделала приворот и присылала отчёты в WhatsApp. Он вернулся через 2 недели!"</p>
+<p style="font-style:italic">"Муж ушёл к другой. {{NAME}} сделала приворот и присылала отчёты в Telegram. Он вернулся через 2 недели!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 2 дня назад</div>
 </div>
 </div>
@@ -302,7 +316,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Не могла встретить достойного мужчину, подозревала венец. {{NAME}} сняла его и поддерживала в WhatsApp. Через месяц познакомилась с любимым!"</p>
+<p style="font-style:italic">"Не могла встретить достойного мужчину, подозревала венец. {{NAME}} сняла его и поддерживала в WhatsApp и Telegram. Через месяц познакомилась с любимым!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 3 дня назад</div>
 </div>
 </div>
@@ -341,7 +355,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Муж стал холодным, подозревала порчу на разлуку. {{NAME}} сняла негатив и поставила защиту, поддерживала по WhatsApp. Отношения наладились!"</p>
+<p style="font-style:italic">"Муж стал холодным, подозревала порчу на разлуку. {{NAME}} сняла негатив и поставила защиту, поддерживала по WhatsApp и в Telegram. Отношения наладились!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 9 дней назад</div>
 </div>
 </div>
@@ -354,7 +368,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Любимый ушёл. {{NAME}} сделала приворот и очень поддерживала в WhatsApp. Он вернулся и попросил прощения!"</p>
+<p style="font-style:italic">"Любимый ушёл. {{NAME}} сделала приворот и очень поддерживала в Telegram. Он вернулся и попросил прощения!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 2 недели назад</div>
 </div>
 </div>
@@ -367,7 +381,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Дочь не могла выйти замуж. {{NAME}} сняла венец безбрачия, присылала отчёты в WhatsApp. Дочка счастлива в браке!"</p>
+<p style="font-style:italic">"Дочь не могла выйти замуж. {{NAME}} сняла венец безбрачия, присылала отчёты в WhatsApp и в Telegram. Дочка счастлива в браке!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 18 дней назад</div>
 </div>
 </div>
@@ -380,7 +394,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Любимый охладел. {{NAME}} сделала приворот, каждый день присылала отчёты в WhatsApp. Он вернулся через 10 дней!"</p>
+<p style="font-style:italic">"Любимый охладел. {{NAME}} сделала приворот, каждый день присылала отчёты в WhatsApp и Telegram. Он вернулся через 10 дней!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 3 недели назад</div>
 </div>
 </div>
@@ -393,7 +407,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Муж стал холодным. {{NAME}} сняла порчу на разлуку и поставила защиту. Поддерживала в WhatsApp. Сейчас всё наладилось!"</p>
+<p style="font-style:italic">"Муж стал холодным. {{NAME}} сняла порчу на разлуку и поставила защиту. Поддерживала в WhatsApp и Telegram. Сейчас всё наладилось!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 1 месяц назад</div>
 </div>
 </div>
@@ -406,7 +420,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="stars">★★★★★</div>
 </div>
 </div>
-<p style="font-style:italic">"Любимый ушёл к другой, сердце разбито. {{NAME}} сделала приворот, поддерживала в WhatsApp. Он вернулся и попросил прощения!"</p>
+<p style="font-style:italic">"Любимый ушёл к другой, сердце разбито. {{NAME}} сделала приворот, поддерживала в WhatsApp и Telegram. Он вернулся и попросил прощения!"</p>
 <div style="margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.4)">📅 6 недель назад</div>
 </div>
 </div>
@@ -420,7 +434,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
         <div class="container">
         <div class="section-header">
         <h2>Почему мне доверяют</h2>
-        <p>Веду до результата, присылаю отчёты в WhatsApp и говорю честно о ситуации.</p>
+        <p>Веду до результата, присылаю отчёты в WhatsApp и Telegram и говорю честно о ситуации.</p>
         </div>
         <div style="max-width:800px;margin:0 auto">
         <div class="card" style="margin-bottom:20px">
@@ -436,8 +450,8 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div style="display:flex;align-items:flex-start;gap:20px">
 <span style="font-size:2.5rem">📱</span>
 <div>
-<h3 style="margin-bottom:10px">Отчёты в WhatsApp</h3>
-<p style="margin:0">Присылаю фотоотчёты после каждого ритуала и отвечаю на ваши вопросы круглосуточно.</p>
+<h3 style="margin-bottom:10px">Отчёты в WhatsApp и Telegram</h3>
+<p style="margin:0">Присылаю фотоотчёты после каждого ритуала и отвечаю на ваши вопросы круглосуточно в выбранном мессенджере.</p>
 </div>
 </div>
 </div>
@@ -458,11 +472,12 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <div class="container">
 <div class="cta-box">
 <h2>Хотите вернуть любимого?</h2>
-<p style="font-size:1.2rem;color:#eff6ff">Напишите в WhatsApp — проведу диагностику по фото, подберу ритуал и буду присылать отчёты каждый день.</p>
+<p style="font-size:1.2rem;color:#eff6ff">Напишите в WhatsApp или Telegram — проведу диагностику по фото, подберу ритуал и буду присылать отчёты каждый день.</p>
 <div class="cta-buttons">
-<a href="https://wa.me/79636840177" class="btn btn-wa" target="_blank" rel="noopener">📱 Написать в WhatsApp</a>
+<a href="https://wa.me/79636840177" class="btn btn-wa" target="_blank" rel="noopener" data-wa="true">📱 Написать в WhatsApp</a>
+<a href="https://t.me/mag_taro8" class="btn btn-tg" target="_blank" rel="noopener" data-telegram="true">&#9992; Написать в Telegram</a>
 </div>
-<p style="margin-top:15px;color:#b5c8e2">🕑 Среднее время ответа — 8 минут • работаю ежедневно 10:00-23:00.</p>
+<p style="margin-top:15px;color:#b5c8e2">🕑 Среднее время ответа — 8 минут • одинаково быстро отвечаю в мессенджерах и работаю ежедневно 10:00-23:00.</p>
 <div class="urgency">
 <strong>⏳ Свободно 2 места на сопровождение сегодня</strong>
 </div>
@@ -473,7 +488,7 @@ footer{background:#040913;padding:40px 0;text-align:center;border-top:1px solid 
 <footer>
 <div class="container">
 <div style="font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,#a8d4ff,#4ea8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:15px" id="footerName"></div>
-<p style="color:#b5c8e2;max-width:600px;margin:0 auto 20px">{{NAME}} помогает вернуть любимых, снять порчу и обрести счастье в личной жизни. Поддержка в WhatsApp 24/7.</p>
+<p style="color:#b5c8e2;max-width:600px;margin:0 auto 20px">{{NAME}} помогает вернуть любимых, снять порчу и обрести счастье в личной жизни. Поддержка в WhatsApp и Telegram 24/7.</p>
 <p style="margin-bottom:15px"><a href="#" onclick="openPrivacyModal();return false" style="color:#4ea8ff;text-decoration:none;font-size:0.9rem;transition:color 0.3s;cursor:pointer" onmouseover="this.style.color='#a8d4ff'" onmouseout="this.style.color='#4ea8ff'">🧾 Политика конфиденциальности</a></p>
 <p style="color:rgba(255,255,255,0.3);font-size:0.85rem">© 2025 Все права защищены</p>
 </div>
@@ -543,15 +558,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     });
 });
 const TARGET_WA_URL=window.__TARGET_WA_URL__;
-const buttons=Array.from(document.querySelectorAll('[data-wa],.btn[href*="whatsapp"],.btn[href*="wa.me"]'));
-const handleClick=(e)=>{
+const TARGET_TG_URL=window.__TELEGRAM_URL__;
+const waButtons=Array.from(document.querySelectorAll('[data-wa],.btn[href*="whatsapp"],.btn[href*="wa.me"]'));
+const handleWaClick=()=>{
     if(typeof ym==='function'&&SITE_SETTINGS.yandexMetrikaId){
         try{ym(SITE_SETTINGS.yandexMetrikaId,'reachGoal','wa_click')}catch(err){}
     }
 };
-buttons.forEach(btn=>{
+waButtons.forEach(btn=>{
     if(btn.tagName==='A'){btn.href=TARGET_WA_URL;btn.target='_blank';btn.rel='noopener noreferrer'}
-    btn.addEventListener('click',handleClick)
+    btn.addEventListener('click',handleWaClick)
+});
+const tgButtons=Array.from(document.querySelectorAll('[data-telegram],.btn[href*="t.me"],.btn[href*="telegram.me"]'));
+const handleTgClick=()=>{
+    if(typeof ym==='function'&&SITE_SETTINGS.yandexMetrikaId){
+        try{ym(SITE_SETTINGS.yandexMetrikaId,'reachGoal','tg_click')}catch(err){}
+    }
+};
+tgButtons.forEach(btn=>{
+    if(TARGET_TG_URL&&btn.tagName==='A'){btn.href=TARGET_TG_URL;btn.target='_blank';btn.rel='noopener noreferrer'}
+    btn.addEventListener('click',handleTgClick)
 });
 const animateOnScroll=()=>{
     document.querySelectorAll('.card,.testimonial,.hero-img').forEach(el=>{
