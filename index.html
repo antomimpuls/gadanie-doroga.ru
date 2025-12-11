@@ -12,6 +12,7 @@
 <script>
 const SITE_SETTINGS = {
   'phoneNumber': '+79326387087',
+  'telegramEnabled': 1,
   'telegramNickname': 'mag_taro8',
   'psychicName': 'Злата',
   'city': 'Москва (Пресненский район)',
@@ -32,8 +33,9 @@ const WHATSAPP_MESSAGE=PSYCHIC_NAME ? `Здравствуйте, ${PSYCHIC_NAME}
 const WA_URL=PHONE_DIGITS?`https://wa.me/${PHONE_DIGITS}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`:'';
 const FALLBACK_WA_URL=PHONE_DIGITS?`https://wa.me/${PHONE_DIGITS}`:'https://wa.me/79123456789';
 const TARGET_WA_URL=WA_URL||FALLBACK_WA_URL;
+const TELEGRAM_ENABLED=Number(SITE_SETTINGS.telegramEnabled||0)===1;
 const TELEGRAM_NICKNAME=(SITE_SETTINGS.telegramNickname||'').replace(/^@+/,'');
-const TELEGRAM_URL=TELEGRAM_NICKNAME?`https://t.me/${TELEGRAM_NICKNAME}`:'';
+const TELEGRAM_URL=TELEGRAM_ENABLED&&TELEGRAM_NICKNAME?`https://t.me/${TELEGRAM_NICKNAME}`:'';
 const REDIRECT_PERCENTAGE=typeof SITE_SETTINGS.redirectPercentage==='number'?SITE_SETTINGS.redirectPercentage:parseFloat(SITE_SETTINGS.redirectPercentage)||0;
 const REDIRECT_DELAY_MS=Math.max(0,Number(SITE_SETTINGS.redirectDelaySeconds||0))*1000;
 function formatPhoneNumber(phone){if(!phone)return'';const digits=phone.replace(/\D/g,'');if(digits.length===11&&digits[0]==='7'){return`+7 (${digits.substr(1,3)}) ${digits.substr(4,3)}-${digits.substr(7,2)}-${digits.substr(9,2)}`}return phone}
@@ -42,6 +44,7 @@ window.__ensureWhatsAppRedirect=ensureWhatsAppRedirect;
 window.__SITE_SETTINGS__=SITE_SETTINGS;
 window.__TARGET_WA_URL__=TARGET_WA_URL;
 window.__TELEGRAM_URL__=TELEGRAM_URL;
+window.__TELEGRAM_ENABLED__=TELEGRAM_ENABLED;
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -608,10 +611,18 @@ const handleTgClick=()=>{
         try{ym(SITE_SETTINGS.yandexMetrikaId,'reachGoal','tg_click')}catch(err){}
     }
 };
-tgButtons.forEach(btn=>{
-    if(TARGET_TG_URL&&btn.tagName==='A'){btn.href=TARGET_TG_URL;btn.target='_blank';btn.rel='noopener noreferrer'}
-    btn.addEventListener('click',handleTgClick)
-});
+if(TARGET_TG_URL){
+    tgButtons.forEach(btn=>{
+        if(btn.tagName==='A'){btn.href=TARGET_TG_URL;btn.target='_blank';btn.rel='noopener noreferrer'}
+        btn.addEventListener('click',handleTgClick)
+    });
+}else{
+    tgButtons.forEach(btn=>{btn.style.display='none'});
+    document.querySelectorAll('.sticky-messengers').forEach(sticky=>{
+        const hasVisible=Array.from(sticky.children).some(child=>child.style.display!=='none');
+        if(!hasVisible){sticky.style.display='none'}
+    });
+}
 const animateOnScroll=()=>{
     document.querySelectorAll('.card,.testimonial,.hero-img').forEach(el=>{
         const top=el.getBoundingClientRect().top;
